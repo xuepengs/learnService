@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:text="serverce"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -31,4 +31,16 @@
         android:text="停止服务"
         tools:layout_editor_absoluteX="148dp"
         tools:layout_editor_absoluteY="180dp" />
+
+    <Button
+        android:id="@+id/bindService"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="绑定服务" />
+
+    <Button
+        android:id="@+id/unBindService"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="解除绑定服务" />
 </LinearLayout>
