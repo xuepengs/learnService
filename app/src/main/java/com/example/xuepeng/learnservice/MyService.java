@@ -6,17 +6,34 @@ import android.os.Binder;
 import android.os.IBinder;
 
 public class MyService extends Service {
+    private boolean serviceRunming = false;
     public MyService() {
 
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        System.out.println("on start Commond");
+
+        return super.onStartCommand(intent, flags, startId);
+    }
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        return new Binder();
+
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        System.out.println("Service Create");
+        serviceRunming=true;
         new Thread(){
             @Override
             public void run() {
                 super.run();
-                while (true) {
+                while (serviceRunming) {
                     System.out.println("服务正在运行。。。");
                     try {
                         sleep(1000);
@@ -27,12 +44,13 @@ public class MyService extends Service {
             }
 
         }.start();
-        return super.onStartCommand(intent, flags, startId);
     }
 
-    @Override
-    public IBinder onBind(Intent intent) {
-        return new Binder();
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        System.out.println("Service Destroy");
+        serviceRunming=false;
     }
 }
